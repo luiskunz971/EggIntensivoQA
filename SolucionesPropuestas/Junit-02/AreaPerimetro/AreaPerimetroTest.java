@@ -4,6 +4,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -30,63 +33,20 @@ class AreaPerimetroTest {
         System.setIn(standardIn);
     }
 
-    @Test
-    void testCalcularPerimetroCirculo() {
-        String esperado = "El perímetro es: 12.566370614359172";
-        ByteArrayInputStream ingreso = new ByteArrayInputStream("1\n1\n2\n".getBytes());
+    @ParameterizedTest
+    @CsvSource({"'1 1 2 ', El perímetro es: 12.566370614359172", //Datos Perimetro Circulo
+                "'1 2 2 ', El área es: 12.566370614359172",      //Datos Area Circulo
+                "'2 1 3 5 4 ', El perímetro es: 12.0",           //Datos Perimetro Triangulo
+                "'2 2 3 4 ', El área es: 6.0",                   //Datos Area Triangulo
+                "'3 1 4 3 ', El perímetro es: 14.0",             //Datos Perimetro Paralelogramo
+                "'3 2 4 3 ', El área es: 12.0"})                 //Datos Area Paralelogramo
+    void testCalcularPerimetroArea(String ingresoTeclado, String esperado) {
+        ByteArrayInputStream ingreso = new ByteArrayInputStream(ingresoTeclado.getBytes());
         System.setIn(ingreso);
         ap1.calculadora();
         String resultado = outputStreamCaptor.toString();
         Assertions.assertTrue(resultado.contains(esperado));
     }
 
-    @Test
-    void testCalcularAreaCirculo() {
-        String esperado = "El área es: 12.566370614359172";
-        ByteArrayInputStream ingreso = new ByteArrayInputStream("1\n2\n2\n".getBytes());
-        System.setIn(ingreso);
-        ap1.calculadora();
-        String resultado = outputStreamCaptor.toString();
-        Assertions.assertTrue(resultado.contains(esperado));
-    }
 
-    @Test
-    void testCalcularPerimetroTriangulo() {
-        String esperado = "El perímetro es: 12.0";
-        ByteArrayInputStream ingreso = new ByteArrayInputStream("2\n1\n3\n5\n4\n".getBytes());
-        System.setIn(ingreso);
-        ap1.calculadora();
-        String resultado = outputStreamCaptor.toString();
-        Assertions.assertTrue(resultado.contains(esperado));
-    }
-
-    @Test
-    void testCalcularAreaTriangulo() {
-        String esperado = "El área es: 6.0";
-        ByteArrayInputStream ingreso = new ByteArrayInputStream("2\n2\n3\n4\n".getBytes());
-        System.setIn(ingreso);
-        ap1.calculadora();
-        String resultado = outputStreamCaptor.toString();
-        Assertions.assertTrue(resultado.contains(esperado));
-    }
-
-    @Test
-    void testCalcularPerimetroParalelogramo() {
-        String esperado = "El perímetro es: 14.0";
-        ByteArrayInputStream ingreso = new ByteArrayInputStream("3\n1\n4\n3\n".getBytes());
-        System.setIn(ingreso);
-        ap1.calculadora();
-        String resultado = outputStreamCaptor.toString();
-        Assertions.assertTrue(resultado.contains(esperado));
-    }
-
-    @Test
-    void testCalcularAreaParalelogramo() {
-        String esperado = "El área es: 12.0";
-        ByteArrayInputStream ingreso = new ByteArrayInputStream("3\n2\n4\n3\n".getBytes());
-        System.setIn(ingreso);
-        ap1.calculadora();
-        String resultado = outputStreamCaptor.toString();
-        Assertions.assertTrue(resultado.contains(esperado));
-    }
 }
