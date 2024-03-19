@@ -1,0 +1,40 @@
+/*
+Con respecto al codigo que falta les propongo remplazarlo con el siguiente hasta
+tener el oficial.
+Actividad: https://app.egg.live/content/step/7BLak81KYgqJarVWqtyUBT
+    1. Opciones de Compra:
+*/
+
+
+/*HTML*/
+
+<div class="opciones-compra">
+  <input type="number" class="cantidad" placeholder="Cantidad">
+  <button class="btn-comprar">Comprar</button>
+  <button class="btn-carrito">Añadir al Carrito</button>
+</div>
+
+/*CSS*/
+
+.opciones-compra {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.opciones-compra input {
+  padding: 8px;
+  margin-right: 10px;
+  width: 100px;
+}
+
+.opciones-compra button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.opciones-compra button:hover {
+  background-color: #0056b3;
+}

@@ -1,0 +1,25 @@
+/*
+Con respecto a lo que hablamos ayer de que no figure una imagen debajo de la otra
+les propongo las siguientes modificaciones en los estilos.
+Actividad: https://app.egg.live/content/step/3OaT3KedFQ1QcI053tQy4e
+    2. Estilización y Ajuste de las Imágenes:
+*/
+
+.product-images-block {
+  max-width: 100%;
+  overflow: auto; /* Utiliza un desplazamiento horizontal si hay muchas imágenes */
+}
+
+.product-images-block .thumbnail-container {
+  float: left; /* Muestra los contenedores de miniaturas en línea */
+  width: 33.33%; /* Asigna un ancho para que quepan tres imágenes en una fila */
+  box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+  padding: 5px; /* Añade espacio entre las miniaturas */
+}
+
+.product-images-block .thumbnail-container img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center center;
+}
